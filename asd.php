@@ -16,19 +16,9 @@ if ((!isset($_SESSION['user']) || (isset($_SESSION['user']) && time() > $_SESSIO
 			if (preg_match('/^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$/', $site)) {
 				if (strlen($site) > 3) {
 					$time = time();
-					/*mysql_query("INSERT INTO `cp_sites` (
-					`sid` ,
-					`host` ,
-					`time`
-					)
-					VALUES (
-					NULL , '" . $site . "', " . time() . "
-					);
-					");*///invalid query, critical error!
 					mysql_query("INSERT INTO `cp_sites` (`sid`, `host`, `pages`, `content`, `content_links`, `footer`, `comment`, `time_reload`, `code_is_set`, `time`) VALUES ('', '{$site}', '', '', '', '', '', '', '', '{$time}')");
 				}
 			}
 		}
 	}
 }
-?>
